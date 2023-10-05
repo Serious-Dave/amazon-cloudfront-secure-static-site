@@ -81,8 +81,6 @@ Resources:
         S3BucketRoot: !GetAtt CustomResourceStack.Outputs.S3BucketRoot
         S3BucketRootName: !GetAtt CustomResourceStack.Outputs.S3BucketRootName
         S3BucketRootArn: !GetAtt CustomResourceStack.Outputs.S3BucketRootArn
-        S3BucketLogs: !GetAtt CustomResourceStack.Outputs.S3BucketLogs
-        S3BucketLogsName: !GetAtt CustomResourceStack.Outputs.S3BucketLogsName
       Tags:
         - Key: Solution
           Value: ACFS3
@@ -93,15 +91,9 @@ Outputs:
   CopyFunction:
     Description: S3 helper function
     Value: !GetAtt CustomResourceStack.Outputs.CopyFunction
-  S3BucketLogs:
-    Description: Logging bucket
-    Value: !GetAtt CustomResourceStack.Outputs.S3BucketLogs
   S3BucketRoot:
     Description: Website bucket
     Value: !GetAtt CustomResourceStack.Outputs.S3BucketRoot
-  S3BucketLogsName:
-    Description: Logging bucket name
-    Value: !GetAtt CustomResourceStack.Outputs.S3BucketLogsName
   S3BucketRootName:
     Description: Website bucket name
     Value: !GetAtt CustomResourceStack.Outputs.S3BucketRootName

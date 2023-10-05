@@ -12,14 +12,8 @@ Parameters:
   SubDomain:
     Description: Subdomain
     Type: String
-  S3BucketLogs:
-    Description: Logging Bucket
-    Type: String
   S3BucketRoot:
     Description: Content Bucket
-    Type: String
-  S3BucketLogsName:
-    Description: Logging Bucket
     Type: String
   S3BucketRootName:
     Description: Content Bucket
@@ -81,10 +75,6 @@ Resources:
         HttpVersion: 'http2'
         DefaultRootObject: 'index.html'
         IPV6Enabled: true
-        Logging:
-          Bucket: !Ref 'S3BucketLogsName'
-          IncludeCookies: false
-          Prefix: 'cdn/'
         Origins:
           - DomainName: !Ref 'S3BucketRootName'
             Id: !Sub 'S3-${AWS::StackName}-root'
