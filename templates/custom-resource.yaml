@@ -82,6 +82,6 @@ Outputs:
   S3BucketRootArn:
     Description: Website bucket locator
     Value: !GetAtt S3BucketRoot.Arn
-    CopyFunction:
+  CopyFunction:
     Description: S3 helper function
     Value: !GetAtt CopyFunction.Arn
