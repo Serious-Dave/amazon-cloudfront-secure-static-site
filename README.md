@@ -12,9 +12,7 @@ For more information about each of these components, see the **Solution details*
 
 ## Solution overview
 
-The following diagram shows an overview of how the solution works:
-
-![Architecture](./docs/images/cf-secure-static-site-architecture.png)
+The following is an overview of how the solution works:
 
 1. The viewer requests the website at www.example.com.
 2. If the requested object is cached, CloudFront returns the object from its cache to the viewer.
@@ -60,57 +58,9 @@ You must have a registered domain name, such as example.com, and point it to a R
 
 > :⚠️ This template can only be deployed in the `us-east-1` region
 
-To deploy the solution, you use [AWS CloudFormation](https://aws.amazon.com/cloudformation). You can use the CloudFormation console, or download the CloudFormation template to deploy it on your own.
+To deploy the solution, you use [AWS CloudFormation](https://aws.amazon.com/cloudformation).
 
 > **Note:** You must have IAM permissions to launch CloudFormation templates that create IAM roles, and to create all the AWS resources in the solution. Also, you are responsible for the cost of the AWS services used while running this solution. For more information about costs, see the pricing pages for each AWS service.
-
-### Use the CloudFormation console
-
-**To deploy the solution using the CloudFormation console**
-
-1. Click the **Launch on AWS** button to open the solution in the CloudFormation console.
-
-   [![Launch the Amazon CloudFront secure static website with CloudFormation](./docs/images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=amazon-cloudfront-secure-static-site-templates-main&templateURL=https://s3.amazonaws.com/solution-builders-us-east-1/amazon-cloudfront-secure-static-site/latest/main.yaml)
-
-2. If necessary, sign in with your AWS account credentials.
-3. You should see a **Create stack** page, with pre-populated fields that specify the CloudFormation template. Choose the **Next** button at the bottom of the page.
-4. On the **Specify stack details** page, enter values for the
-   following fields:
-
-   - **SubDomain:** The subdomain for your registered domain name. Viewers use the subdomain to access your website, for example: www.example.com. We recommend using the default value of **www** as the subdomain.
-   - **DomainName:** Your registered domain name, such as example.com. This domain must be pointed to a Route 53 hosted zone.
-   - **HostedZoneId** The Route 53 Hosted Zone Id containing the domain being used.
-   - **CreateApex:** Optionally create an Alias to the domain apex (example.com) in your CloudFront configuration. Default is [no]
-
-   After entering values, choose the **Next** button.
-
-5. On the **Configure stack options** page, you can optionally [add tags and other stack options](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-add-tags.html). When finished, choose the **Next** button.
-6. On the **Review** page, you must scroll down and check the two boxes in the **Capabilities** section:
-
-   - **I acknowledge that AWS CloudFormation might create IAM resources with custom names.**
-   - **I acknowledge that AWS CloudFormation might require the following capability: CAPABILITY_AUTO_EXPAND**
-
-   These capabilities allow CloudFormation to create an IAM role that allows access
-   to the stack’s resources, and to name the resources dynamically.
-
-7. Choose the **Create stack** button.
-8. Wait for the CloudFormation stack to launch. The stack launches some nested stacks, and can take several minutes to finish. When it’s launched, the **Status** changes to **CREATE_COMPLETE**.
-9. After the stack is launched, go to **www.example.com** to view your website (replace **example.com** with your domain name). You should see the website’s default content:
-
-   ![Static website page](./docs/images/static-website.png)
-
-**To replace the website’s default content with your own**
-
-1. Go to the [Amazon S3 console](https://s3.console.aws.amazon.com/s3/home).
-1. Choose the bucket whose name begins with **amazon-cloudfront-secure-static-site-s3bucketroot-**.
-   > **Note:** Make sure to choose the bucket with **s3bucketroot** in its name, not **s3bucketlogs**. The bucket with **s3bucketroot** in its name contains the content. The one with **s3bucketlogs** contains only log files.
-1. In the bucket, delete the default content, then upload your own.
-
-### Download the CloudFormation template
-
-To download the CloudFormation template to deploy on your own, for example by [using the AWS CLI](https://docs.aws.amazon.com/cli/latest/reference/cloudformation/create-stack.html), go to:
-
-https://s3.amazonaws.com/solution-builders-us-east-1/amazon-cloudfront-secure-static-site/latest/main.yaml
 
 ## Customizing the Solution
 
@@ -168,10 +118,6 @@ To change the Content Security Policy of the site:
 
 1. Make your changes to the header values by editing `source/secured-headers/index.js`.
 1. Deploy the solution by following the steps in [Update the website content locally](#update-the-website-content-locally)
-
-## Contributing
-
-Contributions are welcome. Please read the [code of conduct](CODE_OF_CONDUCT.md) and the [contributing guidelines](CONTRIBUTING.md).
 
 ## License Summary
 
