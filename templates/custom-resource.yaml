@@ -20,8 +20,13 @@ Resources:
           - ServerSideEncryptionByDefault:
               SSEAlgorithm: AES256
       Tags:
-        - Key: Solution
-          Value: ACFS3
+        - Key: Project
+          Value: ThirstAidMobileIV
+      LifecycleConfiguration:
+        Rules:
+          - Id: ExpireLogs
+            Status: Enabled
+            ExpirationInDays: 30
 
   S3BucketRoot:
     Type: AWS::S3::Bucket
@@ -35,8 +40,8 @@ Resources:
         DestinationBucketName: !Ref 'S3BucketLogs'
         LogFilePrefix: 'origin/'
       Tags:
-        - Key: Solution
-          Value: ACFS3
+        - Key: Project
+          Value: ThirstAidMobileIV
 
   CopyLayerVersion:
     Type: 'AWS::Serverless::LayerVersion'

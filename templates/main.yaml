@@ -53,8 +53,8 @@ Resources:
     Properties:
       TemplateURL: ./custom-resource.yaml
       Tags:
-        - Key: Solution
-          Value: ACFS3
+        - Key: Project
+          Value: ThirstAidMobileIV
 
   AcmCertificateStack:
     Type: AWS::CloudFormation::Stack
@@ -66,8 +66,8 @@ Resources:
         CreateApex: !Ref CreateApex
         HostedZoneId: !Ref HostedZoneId
       Tags:
-        - Key: Solution
-          Value: ACFS3
+        - Key: Project
+          Value: ThirstAidMobileIV
 
   CloudFrontStack:
     Type: AWS::CloudFormation::Stack
@@ -84,8 +84,8 @@ Resources:
         S3BucketLogs: !GetAtt CustomResourceStack.Outputs.S3BucketLogs
         S3BucketLogsName: !GetAtt CustomResourceStack.Outputs.S3BucketLogsName
       Tags:
-        - Key: Solution
-          Value: ACFS3
+        - Key: Project
+          Value: ThirstAidMobileIV
 
 Outputs:
   SolutionVersion:

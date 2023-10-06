@@ -96,8 +96,8 @@ Resources:
           MinimumProtocolVersion: 'TLSv1.1_2016'
           SslSupportMethod: 'sni-only'
       Tags:
-        - Key: Solution
-          Value: ACFS3
+        - Key: Project
+          Value: ThirstAidMobileIV
 
   OriginAccessControl:
     Type: AWS::CloudFront::OriginAccessControl
