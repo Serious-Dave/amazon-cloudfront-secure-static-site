@@ -4,8 +4,6 @@ Description: ACFS3 - Certificate creation
 Parameters:
   DomainName:
     Type: String
-  SubDomain:
-    Type: String
   CreateApex:
     Type: String
   HostedZoneId:
@@ -20,20 +18,15 @@ Resources:
   Certificate:
     Type: AWS::CertificateManager::Certificate
     Properties:
-      DomainName: !Sub '${SubDomain}.${DomainName}'
+      DomainName: !Ref DomainName
       SubjectAlternativeNames:
         Fn::If:
           - CreateApexConfig
           - - Ref: DomainName
           - Ref: AWS::NoValue
       DomainValidationOptions:
-        - DomainName: !Sub '${SubDomain}.${DomainName}'
-          HostedZoneId: !Ref HostedZoneId
-        - Fn::If:
-            - CreateApexConfig
             - DomainName: !Ref DomainName
               HostedZoneId: !Ref HostedZoneId
-            - Ref: AWS::NoValue
       ValidationMethod: DNS
 
 Outputs:

@@ -9,9 +9,6 @@ Parameters:
   DomainName:
     Description: Apex domain
     Type: String
-  SubDomain:
-    Description: Subdomain
-    Type: String
   S3BucketLogs:
     Description: Logging Bucket
     Type: String
@@ -57,8 +54,7 @@ Resources:
     Properties:
       DistributionConfig:
         Aliases:
-          - !Sub '${SubDomain}.${DomainName}'
-          - !If [CreateApexConfig, !Ref DomainName, !Ref 'AWS::NoValue']
+            - !Ref DomainName
         DefaultCacheBehavior:
           Compress: true
           DefaultTTL: 86400
@@ -117,7 +113,7 @@ Resources:
     Properties:
       HostedZoneName: !Sub '${DomainName}.'
       RecordSets:
-        - Name: !Sub '${SubDomain}.${DomainName}'
+        - Name: !Ref 'DomainName'
           Type: 'A'
           AliasTarget:
             DNSName: !GetAtt 'CloudFrontDistribution.DomainName'
@@ -173,4 +169,4 @@ Outputs:
 
   CloudFrontDomainName:
     Description: Website address
-    Value: !Sub '${SubDomain}.${DomainName}'
+    Value: !Ref DomainName
